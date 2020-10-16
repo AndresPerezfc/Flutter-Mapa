@@ -23,9 +23,13 @@ class _MapaPageState extends State<MapaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('Pagina del Mapa'),
-      ),
+      body: BlocBuilder<MiUbicacionBloc, MiUbicacionState>(
+          builder: (context, state) => crearMapa(state)),
     );
+  }
+
+  Widget crearMapa(MiUbicacionState state) {
+    if (!state.existeUbicacion) return Center(child: Text('Ubicando...'));
+    return Text('${state.ubicacion.latitude}, ${state.ubicacion.longitude}');
   }
 }
