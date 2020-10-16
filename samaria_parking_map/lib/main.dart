@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:samaria_parking_map/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
 import 'package:samaria_parking_map/pages/accesso_gps_page.dart';
 import 'package:samaria_parking_map/pages/loading_page.dart';
 import 'package:samaria_parking_map/pages/mapa_page.dart';
@@ -11,20 +13,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Mapa Samaria Parking',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return MultiBlocProvider(
+      providers: [BlocProvider(create: (_) => MiUbicacionBloc())],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Mapa Samaria Parking',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: LoadingPage(),
+        //home: AccesoGpsPage(),
+        routes: {
+          'mapa': (_) => MapaPage(),
+          'loading': (_) => LoadingPage(),
+          'acceso_gps': (_) => AccesoGpsPage()
+        },
       ),
-      home: LoadingPage(),
-      //home: AccesoGpsPage(),
-      routes: {
-        'mapa': (_) => MapaPage(),
-        'loading': (_) => LoadingPage(),
-        'acceso_gps': (_) => AccesoGpsPage()
-      },
     );
   }
 }
