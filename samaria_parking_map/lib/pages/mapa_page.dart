@@ -41,14 +41,17 @@ class _MapaPageState extends State<MapaPage> {
     // ignore: close_sinks
     final mapaBloc = BlocProvider.of<MapaBloc>(context);
 
+    mapaBloc.add(OnNuevaUbicacion(state.ubicacion));
+
     final cameraPosition =
         new CameraPosition(target: state.ubicacion, zoom: 15);
 
     return GoogleMap(
-        initialCameraPosition: cameraPosition,
-        myLocationEnabled: true,
-        myLocationButtonEnabled: false,
-        zoomControlsEnabled: false,
-        onMapCreated: mapaBloc.initMapa);
+      initialCameraPosition: cameraPosition,
+      myLocationEnabled: true,
+      myLocationButtonEnabled: false,
+      zoomControlsEnabled: false,
+      onMapCreated: mapaBloc.initMapa,
+    );
   }
 }
