@@ -14,10 +14,10 @@ class MapaState {
       Map<String, Polyline> polylines})
       : this.polylines = polylines ?? new Map();
 
-  MapaState copyWith({
-    bool mapaListo,
-    bool dibujarRecorrido,
-  }) =>
+  MapaState copyWith(
+          {bool mapaListo,
+          bool dibujarRecorrido,
+          Map<String, Polyline> polylines}) =>
       MapaState(
           mapaListo: mapaListo ?? this.mapaListo,
           dibujarRecorrido: dibujarRecorrido ?? this.dibujarRecorrido,
