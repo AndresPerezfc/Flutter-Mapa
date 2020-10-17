@@ -4,3 +4,4 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:samaria_parking_map/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
 
 part 'btn_ubicacion.dart';
+part 'btn_mi_ruta.dart';

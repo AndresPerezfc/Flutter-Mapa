@@ -47,6 +47,19 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
       currentPolylines['mi_ruta'] = this._miRuta;
 
       yield state.copyWith(polylines: currentPolylines);
+    } else if (event is OnMarcarRecorrido) {
+      if (!state.dibujarRecorrido) {
+        this._miRuta = this._miRuta.copyWith(colorParam: Color(0xff5abd8c));
+      } else {
+        this._miRuta = this._miRuta.copyWith(colorParam: Colors.transparent);
+      }
+
+      final currentPolylines = state.polylines;
+      currentPolylines['mi_ruta'] = this._miRuta;
+
+      yield state.copyWith(
+          dibujarRecorrido: !state.dibujarRecorrido,
+          polylines: currentPolylines);
     }
   }
 }
