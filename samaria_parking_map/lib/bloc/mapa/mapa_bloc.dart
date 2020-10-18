@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:meta/meta.dart';
-import 'package:samaria_parking_map/themes/estilo_mapa_theme.dart';
 
 part 'mapa_event.dart';
 part 'mapa_state.dart';
@@ -43,10 +41,16 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
       yield* this._onNuevaUbicacion(event);
     } else if (event is OnMarcarRecorrido) {
       yield* this._onMarcarRecorrido(event);
+    } else if (event is OnSeguirUbicacion) {
+      yield* this._onSeguirUbicacion(event);
     }
   }
 
   Stream<MapaState> _onNuevaUbicacion(OnNuevaUbicacion event) async* {
+    if (state.seguirUbicacion) {
+      this.moverCamara(event.ubicacion);
+    }
+
     final List<LatLng> points = [...this._miRuta.points, event.ubicacion];
     this._miRuta = this._miRuta.copyWith(pointsParam: points);
 
@@ -68,5 +72,12 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
 
     yield state.copyWith(
         dibujarRecorrido: !state.dibujarRecorrido, polylines: currentPolylines);
+  }
+
+  Stream<MapaState> _onSeguirUbicacion(OnSeguirUbicacion event) async* {
+    if (!state.seguirUbicacion) {
+      this.moverCamara(this._miRuta.points[this._miRuta.points.length - 1]);
+    }
+    yield state.copyWith(seguirUbicacion: !state.seguirUbicacion);
   }
 }

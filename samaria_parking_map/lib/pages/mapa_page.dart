@@ -30,7 +30,7 @@ class _MapaPageState extends State<MapaPage> {
           builder: (context, state) => crearMapa(state)),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
-        children: [BtnUbicacion(), BtnMiRuta()],
+        children: [BtnUbicacion(), BtnSeguirUbicacion(), BtnMiRuta()],
       ),
     );
   }
