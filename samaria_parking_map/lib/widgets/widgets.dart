@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:samaria_parking_map/bloc/busqueda/busqueda_bloc.dart';
 import 'package:samaria_parking_map/bloc/mapa/mapa_bloc.dart';
