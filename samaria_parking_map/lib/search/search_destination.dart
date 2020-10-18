@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
+import 'package:samaria_parking_map/models/search_result.dart';
 
-class SearchDestination extends SearchDelegate {
+class SearchDestination extends SearchDelegate<SearchResult> {
   @override
   final String searchFieldLabel;
   SearchDestination() : this.searchFieldLabel = 'Buscar';
@@ -20,7 +21,7 @@ class SearchDestination extends SearchDelegate {
   Widget buildLeading(BuildContext context) {
     return IconButton(
       icon: Icon(Icons.arrow_back_ios),
-      onPressed: () => this.close(context, null),
+      onPressed: () => this.close(context, SearchResult(cancelo: true)),
     );
   }
 
@@ -38,6 +39,7 @@ class SearchDestination extends SearchDelegate {
           title: Text("Ingresar Ubicacion"),
           onTap: () {
             print("Manualmente");
+            this.close(context, SearchResult(cancelo: false, manual: true));
           },
         )
       ],
