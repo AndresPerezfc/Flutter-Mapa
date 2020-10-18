@@ -26,8 +26,13 @@ class _MapaPageState extends State<MapaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<MiUbicacionBloc, MiUbicacionState>(
-          builder: (context, state) => crearMapa(state)),
+      body: Stack(
+        children: [
+          BlocBuilder<MiUbicacionBloc, MiUbicacionState>(
+              builder: (context, state) => crearMapa(state)),
+          Positioned(top: 15, child: SearchBar()),
+        ],
+      ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [BtnUbicacion(), BtnSeguirUbicacion(), BtnMiRuta()],
