@@ -15,7 +15,7 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
 
   //Polylines
   Polyline _miRuta = new Polyline(
-      polylineId: PolylineId('mi_ruta'), color: Color(0xff5abd8c), width: 4);
+      polylineId: PolylineId('mi_ruta'), color: Colors.transparent, width: 4);
 
   void initMapa(GoogleMapController controller) {
     if (!state.mapaListo) {
@@ -43,6 +43,8 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
       yield* this._onMarcarRecorrido(event);
     } else if (event is OnSeguirUbicacion) {
       yield* this._onSeguirUbicacion(event);
+    } else if (event is OnMovioMapa) {
+      yield state.copyWith(ubicacionCentral: event.centroMapa);
     }
   }
 
