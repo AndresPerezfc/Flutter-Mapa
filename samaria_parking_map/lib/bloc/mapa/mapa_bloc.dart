@@ -15,13 +15,13 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
 
   //Polylines
   Polyline _miRuta = new Polyline(
-      polylineId: PolylineId('mi_ruta'), color: Colors.transparent, width: 4);
+      polylineId: PolylineId('mi_ruta'), color: Colors.transparent, width: 10);
 
   //Polylines
   Polyline _miRutaDestino = new Polyline(
       polylineId: PolylineId('mi_Ruta_Destino'),
       color: Color(0xff5abd8c),
-      width: 4);
+      width: 10);
 
   void initMapa(GoogleMapController controller) {
     if (!state.mapaListo) {

@@ -5,6 +5,7 @@ import 'package:samaria_parking_map/bloc/busqueda/busqueda_bloc.dart';
 import 'package:samaria_parking_map/bloc/mapa/mapa_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:samaria_parking_map/bloc/mi_ubicacion/mi_ubicacion_bloc.dart';
+import 'package:samaria_parking_map/helpers/helpers.dart';
 import 'package:samaria_parking_map/models/search_result.dart';
 import 'package:samaria_parking_map/search/search_destination.dart';
 import 'package:samaria_parking_map/services/traffic_service.dart';
